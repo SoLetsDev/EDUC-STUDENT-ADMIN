@@ -148,9 +148,14 @@ export default {
             title: 'Macro Management',
             link: 'macros',
             authorized: this.isValidStaffAdministrationUser
+          },
+          {
+            title: 'Dashboards',
+            link: 'gmpUmpStats',
+            authorized: this.isValidStaffAdministrationUser
           }
         ],
-      }
+      },
     ];
   },
   computed: {

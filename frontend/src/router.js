@@ -30,6 +30,7 @@ import PenMatch from './components/penreg/PenMatch';
 import CompareStudents from './components/CompareStudents';
 import PenCoordinatorsDisplay from './components/penreg/coordinator/PenCoordinatorsDisplay';
 import MacrosDisplay from './components/admin/MacrosDisplay';
+import StatsDashboard from './components/admin/StatsDashboard';
 Vue.prototype.moment = moment;
 
 Vue.use(VueRouter);
@@ -292,6 +293,16 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/dashboards',
+      name: 'gmpUmpStats',
+      component: StatsDashboard,
+      meta: {
+        pageTitle: PAGE_TITLES.STATS_DASHBOARD,
+        requiresAuth: false/*,
+        role: 'isValidStaffAdministrationUser'*/
+      },
+    },
+    {
       path: '/login',
       name: 'login',
       component: Login,
@@ -391,7 +402,6 @@ router.beforeEach((to, _from, next) => {
     store.commit('studentSearch/clearStudentSearchParams');
     store.commit('studentSearch/clearStudentSearchResults');
   }
-
   // this section is to handle the backend session expiry, where frontend vue session is still valid.
   if (to.meta.requiresAuth && authStore.state.isAuthenticated) {
     validateAndExecute('/token-expired');
